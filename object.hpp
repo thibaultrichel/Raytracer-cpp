@@ -12,8 +12,10 @@
 #include "raytracer.hpp"
 #include "color.hpp"
 
-class Object {
+class Object3D {
 public:
+    Object3D();
+    virtual ~Object3D();
     virtual double getIntersectionDistance(const Ray &ray) = 0;
     Color getColor();
     void setColor(Color color);

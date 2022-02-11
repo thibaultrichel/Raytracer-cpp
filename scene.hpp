@@ -16,12 +16,13 @@
 class Scene
 {
 private:
-    std::vector<Object*> objectList;
+    std::vector<Object3D*> objectList;
 
 public:
     Scene();
     void Render(std::string filename, unsigned int imgWidth, unsigned int imgHeight);
-    void addObject(Object* obj);
+    void addObject(Object3D* obj);
+    Color Raytrace(const Ray &ray);
 };
 
 #endif /* scene_hpp */

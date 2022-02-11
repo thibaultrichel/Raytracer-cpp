@@ -8,6 +8,9 @@
 #include "scene.hpp"
 #include "Bmpfile.hpp"
 
+Scene::Scene() {
+    
+}
 
 void Scene::Render(std::string filename, unsigned int imgWidth, unsigned int imgHeight) {
     BMPFile file;
@@ -25,6 +28,10 @@ void Scene::Render(std::string filename, unsigned int imgWidth, unsigned int img
     file.SaveBmp(filename, buffer, imgWidth, imgHeight);
 }
 
-void Scene::addObject(Object* obj) {
+void Scene::addObject(Object3D* obj) {
     objectList.push_back(obj);
+}
+
+Color Scene::Raytrace(const Ray &ray) {
+    return Color(255, 255, 255);
 }

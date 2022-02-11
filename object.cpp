@@ -7,10 +7,18 @@
 
 #include "object.hpp"
 
-Color Object::getColor() {
+Object3D::Object3D() {
+    
+}
+
+Object3D::~Object3D() {
+    
+}
+
+Color Object3D::getColor() {
     return color;
 }
 
-void Object::setColor(Color color_p) {
+void Object3D::setColor(Color color_p) {
     color = color_p;
 }

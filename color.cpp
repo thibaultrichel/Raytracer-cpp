@@ -7,7 +7,7 @@
 
 #include "color.hpp"
 
-Color::Color(int r, int g, int b) {
+Color::Color(float r, float g, float b) {
     R = r;
     G = g;
     B = b;

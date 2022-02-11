@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include "object.hpp"
 
-class Sphere: public Object {
+class Sphere: public Object3D {
 private:
     float R;
 public:

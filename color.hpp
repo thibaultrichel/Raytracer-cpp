@@ -16,7 +16,7 @@ private:
     float G;
     float B;
 public:
-    Color(int r, int g, int b);
+    Color(float r=0, float g=0, float b=0);
     
     Color operator * (const float k);
     Color operator * (const Color c);

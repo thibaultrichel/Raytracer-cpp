@@ -12,7 +12,7 @@ Sphere::Sphere(Point3d center_p, float R_p) {
     R = R_p;
 }
 
-double Sphere::getIntersectionDistance(Ray &ray) {
+double Sphere::getIntersectionDistance(const Ray &ray) {
     // Points
     Vector3d src_point = ray.getOrigin();
 

@@ -17,8 +17,8 @@ private:
 public:
     Ray(Vector3d Point3d, Vector3d dir_p);
     ~Ray(){}
-    Point3d getOrigin();
-    Vector3d getDir();
+    Point3d getOrigin() const;
+    Vector3d getDir() const;
 };
 
 #endif /* raytracer_hpp */

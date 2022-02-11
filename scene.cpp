@@ -36,8 +36,9 @@ void Scene::addObject(Object3D* obj) {
 Object3D* Scene::findNearestObject(const Ray &ray, double &distance) {
     Object3D *nearest = NULL;
     for (Object3D *obj : objectList) {
-        if (obj->getIntersectionDistance(ray) >= 0) {
-            if (obj->getIntersectionDistance(ray) <= nearest->getIntersectionDistance(ray)) {
+        double objDistance = obj->getIntersectionDistance(ray);
+        if (objDistance >= 0) {
+            if (objDistance < nearest->getIntersectionDistance(ray)) {
                 nearest = obj;
             }
         }
@@ -46,6 +47,8 @@ Object3D* Scene::findNearestObject(const Ray &ray, double &distance) {
 }
 
 Color Scene::Raytrace(const Ray &ray) {
-    
-    return Color(255, 0, 0);
+    double dist = 1.;
+    Object3D *nearestObject = Scene::findNearestObject(ray, dist);
+    Color color = nearestObject->getColor();
+    return color;
 }

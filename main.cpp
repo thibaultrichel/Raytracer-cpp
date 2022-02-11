@@ -15,6 +15,7 @@ int main(int argc, const char * argv[]) {
     Scene scene;
     
     Sphere *sphere = new Sphere(Point3d(0, 0, 0), 1.);
+    sphere->setColor(Color(255, 255, 0));
     
     Point3d *cameraPosition = new Point3d(0, 0, 10);
     scene.addObject(sphere);

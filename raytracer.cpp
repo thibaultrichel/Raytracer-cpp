@@ -12,10 +12,10 @@ Ray::Ray(Point3d origin_p, Vector3d dir_p) {
     dir = dir_p.Unit();
 }
 
-Point3d Ray::getOrigin() {
+Point3d Ray::getOrigin() const {
     return origin;
 }
 
-Vector3d Ray::getDir() {
+Vector3d Ray::getDir() const {
     return dir;
 }

@@ -16,7 +16,7 @@ private:
     Point3d center;
     float R;
 public:
-    virtual double getIntersectionDistance(Ray &ray);
+    virtual double getIntersectionDistance(const Ray &ray);
     Sphere(Point3d center_p, float R_p);
 };
 

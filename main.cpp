@@ -16,6 +16,7 @@ int main(int argc, const char * argv[]) {
     
     Sphere *sphere = new Sphere(Point3d(0, 0, 0), 1.);
     
+    Point3d *cameraPosition = new Point3d(0, 0, 10);
     scene.addObject(sphere);
     
     string filename = "/Users/thibaultrichel/Desktop/test.bmp";

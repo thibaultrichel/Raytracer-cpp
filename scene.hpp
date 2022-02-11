@@ -17,12 +17,12 @@ class Scene
 {
 private:
     std::vector<Object3D*> objectList;
-
 public:
     Scene();
     void Render(std::string filename, unsigned int imgWidth, unsigned int imgHeight);
     void addObject(Object3D* obj);
     Color Raytrace(const Ray &ray);
+    Object3D* findNearestObject(const Ray &ray, double &distance);
 };
 
 #endif /* scene_hpp */

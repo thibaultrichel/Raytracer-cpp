@@ -13,6 +13,18 @@ Color::Color(float r, float g, float b) {
     B = b;
 }
 
+float Color::getR() {
+    return R;
+}
+
+float Color::getG() {
+    return G;
+}
+
+float Color::getB() {
+    return B;
+}
+
 Color Color::operator * (const float k){
     return Color(R * k, G * k, B * k);
 }

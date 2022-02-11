@@ -13,9 +13,10 @@
 
 class Sphere: public Object3D {
 private:
+    Point3d center;
     float R;
 public:
-    virtual double getIntersectionDistance(const Ray &ray);
+    virtual double getIntersectionDistance(Ray &ray);
     Sphere(Point3d center_p, float R_p);
 };
 

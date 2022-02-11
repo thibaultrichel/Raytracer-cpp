@@ -14,15 +14,17 @@ using namespace std;
 int main(int argc, const char * argv[]) {
     Scene scene;
     
-    Sphere *sphere = new Sphere(Point3d(0, 0, 0), 1.);
-    sphere->setColor(Color(255, 255, 0));
+    Sphere *sphere1 = new Sphere(Point3d(0, 0, 0), 0.2);
+    Sphere *sphere2 = new Sphere(Point3d(0, 0.2, 0.5), 0.1);
+    sphere1->setColor(Color(0, 1, 0));
+    sphere2->setColor(Color(1, 0, 0));
     
-    Point3d *cameraPosition = new Point3d(0, 0, 10);
-    scene.addObject(sphere);
+    scene.addObject(sphere1);
+    scene.addObject(sphere2);
     
     string filename = "/Users/thibaultrichel/Desktop/test.bmp";
-    unsigned int width = 400;
-    unsigned int height = 400;
+    unsigned int width = 800;
+    unsigned int height = 800;
     
     scene.Render(filename, width, height);
     

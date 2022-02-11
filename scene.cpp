@@ -16,13 +16,22 @@ void Scene::Render(std::string filename, unsigned int imgWidth, unsigned int img
     BMPFile file;
     unsigned int index = 0;
     unsigned char *buffer = new unsigned char[imgWidth*imgHeight*3];
-    
+    Vector3d cameraPosition(0, 0, 10);
+        
     for (int y = 0; y < imgHeight; y++) {
         for (int x = 0; x < imgWidth; x++) {
-            Color color = Scene::Raytrace(ray);    // ?
-            buffer[index++] = color.getB();
-            buffer[index++] = color.getG();
-            buffer[index++] = color.getR();
+            Vector3d bufferPoint((double)(x - (int)(imgWidth / 2)) / (double)imgWidth,
+                                 - (double)(y - (int)(imgHeight / 2)) / (double)imgHeight, 0);
+            Vector3d rayDir;
+            Color pixelColor(0, 0, 0);
+            
+            rayDir = (bufferPoint - cameraPosition).Unit();
+            Ray ray(cameraPosition, rayDir);
+            
+            Color color = Scene::Raytrace(ray);
+            buffer[index++] = (unsigned char) color.getB() * 255;
+            buffer[index++] = (unsigned char) color.getG() * 255;
+            buffer[index++] = (unsigned char) color.getR() * 255;
         }
     }
     
@@ -35,11 +44,13 @@ void Scene::addObject(Object3D* obj) {
 
 Object3D* Scene::findNearestObject(const Ray &ray, double &distance) {
     Object3D *nearest = NULL;
+    double nearestDistance = 100000.0;
     for (Object3D *obj : objectList) {
         double objDistance = obj->getIntersectionDistance(ray);
         if (objDistance >= 0) {
-            if (objDistance < nearest->getIntersectionDistance(ray)) {
+            if (objDistance < nearestDistance) {
                 nearest = obj;
+                nearestDistance = objDistance;
             }
         }
     }
@@ -49,6 +60,9 @@ Object3D* Scene::findNearestObject(const Ray &ray, double &distance) {
 Color Scene::Raytrace(const Ray &ray) {
     double dist = 1.;
     Object3D *nearestObject = Scene::findNearestObject(ray, dist);
+    if (nearestObject == NULL) {
+        return Color(0, 0, 0);
+    }
     Color color = nearestObject->getColor();
     return color;
 }

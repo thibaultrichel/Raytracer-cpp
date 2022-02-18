@@ -17,7 +17,8 @@ private:
     float R;
 public:
     virtual double getIntersectionDistance(const Ray &ray);
-    Sphere(Point3d center_p, float R_p);
+    Sphere(Point3d center_p, float R_p, float ks_p=0.0, float nShiny_p=0.0, float kr_p=0.0);
+    Vector3d getNormalAt(Vector3d point);
 };
 
 #endif /* sphere_hpp */

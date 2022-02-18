@@ -7,7 +7,7 @@
 
 #include "sphere.hpp"
 
-Sphere::Sphere(Point3d center_p, float R_p) {
+Sphere::Sphere(Point3d center_p, float R_p, float ks_p, float nShiny_p, float kr_p){
     center = center_p;
     R = R_p;
 }
@@ -52,4 +52,8 @@ double Sphere::getIntersectionDistance(const Ray &ray) {
         }
     }
     return t;
+}
+
+Vector3d Sphere::getNormalAt(Vector3d point) {
+    return (point - center).Unit();
 }

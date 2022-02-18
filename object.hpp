@@ -13,14 +13,21 @@
 #include "color.hpp"
 
 class Object3D {
+private:
+    Color color;
+    float ks;
+    float nShiny;
+    float kr;
 public:
     Object3D();
     virtual ~Object3D();
     virtual double getIntersectionDistance(const Ray &ray) = 0;
+    virtual Vector3d getNormalAt(Vector3d point) = 0;
     Color getColor();
     void setColor(Color color);
-private:
-    Color color;
+    float getKs();
+    float getNs();
+    float getKr();
 };
 
 #endif /* object_hpp */

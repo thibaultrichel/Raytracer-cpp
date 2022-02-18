@@ -7,6 +7,9 @@
 
 #include "scene.hpp"
 #include "Bmpfile.hpp"
+#include <iostream>
+#include <cmath>
+
 
 Scene::Scene() {
     
@@ -21,7 +24,7 @@ void Scene::Render(std::string filename, unsigned int imgWidth, unsigned int img
     for (int y = 0; y < imgHeight; y++) {
         for (int x = 0; x < imgWidth; x++) {
             Vector3d bufferPoint((double)(x - (int)(imgWidth / 2)) / (double)imgWidth,
-                                 - (double)(y - (int)(imgHeight / 2)) / (double)imgHeight, 0);
+                                 -(double)(y - (int)(imgHeight / 2)) / (double)imgHeight, 0);
             Vector3d rayDir;
             Color pixelColor(0, 0, 0);
             
@@ -58,11 +61,53 @@ Object3D* Scene::findNearestObject(const Ray &ray, double &distance) {
 }
 
 Color Scene::Raytrace(const Ray &ray) {
-    double dist = 1.;
-    Object3D *nearestObject = Scene::findNearestObject(ray, dist);
+    double distance;
+    Object3D *nearestObject = Scene::findNearestObject(ray, distance);
+    Color color;
+    Color finalColor(0, 0, 0);
+
     if (nearestObject == NULL) {
         return Color(0, 0, 0);
     }
-    Color color = nearestObject->getColor();
-    return color;
+
+    color = nearestObject->getColor();
+    Vector3d spherePoint = ray.getOrigin() + (ray.getDir() * distance);
+    Vector3d normalVector = nearestObject->getNormalAt(spherePoint);
+    Vector3d toObserver = ray.getDir() * (-1);
+
+    double diffuseLightFactor = 0.5;
+    double specularLightFactor = 0.5;
+    double zero = 0.0;
+    Color diffuseLight(0, 0, 0);
+    Color specularLight(0, 0, 0);
+
+    for (int i = 0; i < lights.size(); i++) {
+        Vector3d lightDir = lights[i]->getDirection();
+        Vector3d toLight = (lightDir * (-1));
+
+        // Lambert model : diffused light
+        diffuseLightFactor = std::max(normalVector.Dot(toLight), zero);
+        diffuseLight = diffuseLight + lights[i]->getColor() * diffuseLightFactor;
+
+        // Phong model : specular light
+        Vector3d reflexionVector = (normalVector * (2 * normalVector.Dot(toLight)) - toLight).Unit();
+        specularLightFactor = std::pow(std::max(reflexionVector.Dot(toObserver), zero), nearestObject->getNs()) * nearestObject->getKs();
+        specularLight = specularLight + lights[i]->getColor() * specularLightFactor;
+    }
+
+    finalColor += color * diffuseLight;
+    finalColor += specularLight;
+
+    Vector3d reflectedRayDir = (normalVector * (2 * normalVector.Dot(toObserver)) - toObserver).Unit();
+    Ray reflectedRay(spherePoint, reflectedRayDir);
+
+//    if (finalColor.getR() != 0 and finalColor.getG() != 0 and finalColor.getB() != 0) {
+//        std::cout << finalColor.getR() << ";" << finalColor.getG() << ";" << finalColor.getB() << std::endl;
+//    }
+    
+    return finalColor;
+}
+
+void Scene::addLight(Light* light) {
+    lights.push_back(light);
 }

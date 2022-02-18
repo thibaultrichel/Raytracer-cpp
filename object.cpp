@@ -22,3 +22,14 @@ Color Object3D::getColor() {
 void Object3D::setColor(Color color_p) {
     color = color_p;
 }
+
+float Object3D::getKs() {
+    return ks;
+}
+
+float Object3D::getNs() {
+    return nShiny;
+}
+float Object3D::getKr() {
+    return kr;
+}

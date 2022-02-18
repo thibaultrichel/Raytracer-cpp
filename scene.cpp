@@ -75,8 +75,8 @@ Color Scene::Raytrace(const Ray &ray) {
     Vector3d normalVector = nearestObject->getNormalAt(spherePoint);
     Vector3d toObserver = ray.getDir() * (-1);
 
-    double diffuseLightFactor = 0.5;
-    double specularLightFactor = 0.5;
+    double diffuseLightFactor = 0.0;
+    double specularLightFactor = 0.0;
     double zero = 0.0;
     Color diffuseLight(0, 0, 0);
     Color specularLight(0, 0, 0);
@@ -103,6 +103,7 @@ Color Scene::Raytrace(const Ray &ray) {
 
 //    if (finalColor.getR() != 0 and finalColor.getG() != 0 and finalColor.getB() != 0) {
 //        std::cout << finalColor.getR() << ";" << finalColor.getG() << ";" << finalColor.getB() << std::endl;
+//        std::cout << diffuseLightFactor << std::endl;
 //    }
     
     return finalColor;

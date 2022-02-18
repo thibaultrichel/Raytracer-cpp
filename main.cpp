@@ -14,8 +14,8 @@ using namespace std;
 int main(int argc, const char * argv[]) {
     Scene scene;
     
-    Sphere *sphere1 = new Sphere(Point3d(0, 0, 0), 0.2, 1, 10, 1);
-    Sphere *sphere2 = new Sphere(Point3d(0, 0, 1), 0.1, 1, 10, 1);
+    Sphere *sphere1 = new Sphere(Point3d(0, 0, 0), 0.1, 1, 10, 1);
+    Sphere *sphere2 = new Sphere(Point3d(0, 0.1, 0), 0.1, 1, 10, 1);
     sphere1->setColor(Color(0, 1, 0));
     sphere2->setColor(Color(1, 0, 0));
     

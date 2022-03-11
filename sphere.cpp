@@ -7,7 +7,7 @@
 
 #include "sphere.hpp"
 
-Sphere::Sphere(Point3d center_p, float R_p, float ks_p, float nShiny_p, float kr_p){
+Sphere::Sphere(Point3d center_p, float R_p, float ks_p, float nShiny_p): Object3D(ks_p, nShiny_p) {
     center = center_p;
     R = R_p;
 }

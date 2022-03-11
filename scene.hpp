@@ -14,6 +14,7 @@
 #include "object.hpp"
 #include "light.hpp"
 #include "directional-light.hpp"
+#include "point-light.hpp"
 
 class Scene
 {
@@ -27,6 +28,8 @@ public:
     Color Raytrace(const Ray &ray);
     Object3D* findNearestObject(const Ray &ray, double &distance);
     void addLight(Light *light);
+    Color computeLocalIllumination(Object3D *pObject, const Vector3d &intersection, const Vector3d &normalAtIntersection, const Ray &ray);
+
 };
 
 #endif /* scene_hpp */

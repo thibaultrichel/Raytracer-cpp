@@ -7,8 +7,9 @@
 
 #include "object.hpp"
 
-Object3D::Object3D() {
-    
+Object3D::Object3D(float ks_p, float nShiny_p){
+    ks = ks_p;
+    nShiny = nShiny_p;
 }
 
 Object3D::~Object3D() {

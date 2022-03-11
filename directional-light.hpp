@@ -9,10 +9,9 @@
 #define directional_light_hpp
 
 #include <stdio.h>
-
 #include "light.hpp"
 
-class DirectionalLight: public Light{
+class DirectionalLight: public Light {
     private:
         Vector3d lightDirection;
     public:

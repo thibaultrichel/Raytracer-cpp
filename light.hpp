@@ -21,7 +21,8 @@ class Light{
         Light(Color lightColor_p);
         ~Light(){}
         virtual Color getColor() = 0;
-        virtual Vector3d getDirection() = 0;
+        virtual Vector3d getPosition() = 0;
+        virtual Vector3d getVectorToLightAtPoint(Vector3d point) = 0;
 };
 
 #endif /* light_hpp */

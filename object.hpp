@@ -19,7 +19,7 @@ private:
     float nShiny;
     float kr;
 public:
-    Object3D();
+    Object3D(float ks_p, float nShiny_p);
     virtual ~Object3D();
     virtual double getIntersectionDistance(const Ray &ray) = 0;
     virtual Vector3d getNormalAt(Vector3d point) = 0;
